@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Eye, EyeOff, UserPlus } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../api/axios"
 import { toast } from "sonner";
 
 const Signup = () => {
@@ -24,8 +24,8 @@ const Signup = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post(
-        `http://localhost:8000/api/v1/user/register`,
+      const res = await api.post(
+        `/user/register`,
         formData,
         { headers: { "Content-Type": "application/json" } }
       );

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../../api/axios"
 import { IndianRupee, ShoppingCart, Users, Package, TrendingUp } from "lucide-react";
 import {
   ResponsiveContainer, LineChart, Line,
@@ -69,8 +69,8 @@ const AdminSales = () => {
   const fetchStats = async () => {
     try {
       const accessToken = localStorage.getItem("accessToken");
-      const res = await axios.get(
-        `${import.meta.env.VITE_URL}/api/v1/order/sales`,
+      const res = await api.get(
+        "/order/sales",
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
       if (res.data.success) {

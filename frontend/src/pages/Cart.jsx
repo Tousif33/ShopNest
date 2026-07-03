@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import api from "../api/axios"
 import { useDispatch, useSelector } from "react-redux";
 import { setCart } from "../redux/productSlice";
 import { Trash2, ShoppingCart } from "lucide-react";
@@ -14,8 +14,8 @@ const Cart = () => {
 
   const updateQuantity = async (productId, type) => {
     try {
-      const res = await axios.put(
-        "http://localhost:8000/api/v1/cart/update",
+      const res = await api.put(
+        "/cart/update",
         { productId, type },
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
@@ -28,8 +28,8 @@ const Cart = () => {
 
   const removeFromCart = async (productId) => {
     try {
-      const res = await axios.delete(
-        "http://localhost:8000/api/v1/cart/remove",
+      const res = await api.delete(
+        "/cart/remove",
         {
           headers: { Authorization: `Bearer ${accessToken}` },
           data: { productId },

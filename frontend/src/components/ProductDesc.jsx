@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Star, Truck, ShieldCheck } from "lucide-react";
-import axios from "axios";
+import api from "../api/axios"
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -19,8 +19,8 @@ const ProductDesc = ({ product }) => {
       return;
     }
     try {
-      const res = await axios.post(
-        "http://localhost:8000/api/v1/cart/add",
+      const res = await api.post(
+        "/cart/add",
         { productId, quantity },
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );

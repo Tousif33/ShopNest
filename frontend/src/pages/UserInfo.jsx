@@ -4,7 +4,7 @@ import userlogo from "@/assets/userlogo.png";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import api from "../api/axios"
 import { toast } from "sonner";
 import { setUser } from "@/redux/userSlice";
 
@@ -47,8 +47,8 @@ const UserInfo = () => {
       if (updateUser.role) formData.append("role", updateUser.role);
       if (file) formData.append("file", file);
 
-      const res = await axios.put(
-        `http://localhost:8000/api/v1/user/update/${userId}`,
+      const res = await api.put(
+        `/user/update/${userId}`,
         formData,
         { headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "multipart/form-data" } }
       );
@@ -67,7 +67,7 @@ const UserInfo = () => {
 
   const getUserDetails = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/v1/user/get-user/${userId}`);
+      const res = await api.get(`/user/get-user/${userId}`);
       if (res.data.success) {
         const u = res.data.user;
         setUpdateUser({

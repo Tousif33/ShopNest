@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../../api/axios"
 import { Edit, Eye, Search, Users } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import userlogo from "../../assets/userlogo.png";
@@ -12,8 +12,8 @@ const AdminUsers = () => {
   const getAllUsers = async () => {
     const accessToken = localStorage.getItem("accessToken");
     try {
-      const res = await axios.get(
-        "http://localhost:8000/api/v1/user/all-user",
+      const res = await api.get(
+        "/user/all-user",
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
       if (res.data.success) setUsers(res.data.users);

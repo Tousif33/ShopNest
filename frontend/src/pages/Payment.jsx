@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import api from "../api/axios"
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -21,8 +21,8 @@ const Payment = () => {
       // Simulate payment processing
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
-      const res = await axios.post(
-        "http://localhost:8000/api/v1/order/create",
+      const res = await api.post(
+        "/order/create",
         {},
         {
           headers: {

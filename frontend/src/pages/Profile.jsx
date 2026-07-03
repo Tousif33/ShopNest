@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import api from "../api/axios"
 import { toast } from "sonner";
 import { setUser } from "@/redux/userSlice";
 import userlogo from "@/assets/userlogo.png";
@@ -55,8 +55,8 @@ const Profile = () => {
       if (updateUser.role) formData.append("role", updateUser.role);
       if (file) formData.append("file", file);
 
-      const res = await axios.put(
-        `http://localhost:8000/api/v1/user/update/${userId}`,
+      const res = await api.put(
+        `/user/update/${userId}`,
         formData,
         { headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "multipart/form-data" } }
       );

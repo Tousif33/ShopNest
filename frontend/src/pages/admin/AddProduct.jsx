@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 
 import ImageUpload from "@/components/ImageUpload";
 import { toast } from "sonner";
-import axios from "axios";
+import api from "../../api/axios"
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "@/redux/productSlice";
 import { Loader2 } from "lucide-react";
@@ -67,8 +67,8 @@ const AddProduct = () => {
 
     try {
       setLoading(true);
-      const res = await axios.post(
-        "http://localhost:8000/api/v1/product/add",
+      const res = await api.post(
+        "/v1/product/add",
         formData,
         {
           headers: {

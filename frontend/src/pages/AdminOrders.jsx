@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api/axios"
 import { Search, Package, ClipboardList } from "lucide-react";
 
 const statusColor = (status) => {
@@ -25,8 +25,8 @@ const AdminOrders = () => {
   const getOrders = async () => {
     try {
       const accessToken = localStorage.getItem("accessToken");
-      const res = await axios.get(
-        `${import.meta.env.VITE_URL}/api/v1/order/all-orders`,
+      const res = await api.get(
+        "/order/all-orders",
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
       if (res.data.success) setOrders(res.data.orders);
@@ -46,8 +46,8 @@ const AdminOrders = () => {
   const updateStatus = async (orderId, orderStatus) => {
     try {
       const accessToken = localStorage.getItem("accessToken");
-      const res = await axios.put(
-        `${import.meta.env.VITE_URL}/api/v1/order/update-status/${orderId}`,
+      const res = await api.put(
+        `/order/update-status/${orderId}`,
         { orderStatus },
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );

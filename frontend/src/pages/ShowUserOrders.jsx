@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api/axios"
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
@@ -21,8 +21,8 @@ const ShowUserOrders = () => {
     try {
       const accessToken = localStorage.getItem("accessToken");
 
-      const res = await axios.get(
-        `${import.meta.env.VITE_URL}/api/v1/order/user-orders/${userId}`,
+      const res = await api.get(
+        `/order/user-orders/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,

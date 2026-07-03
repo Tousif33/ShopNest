@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/select";
 import ProductCard from "@/components/ProductCard";
 import { toast } from "sonner";
-import axios from "axios";
+import api from "../api/axios"
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "@/redux/productSlice";
 import { SlidersHorizontal } from "lucide-react";
@@ -29,7 +29,7 @@ const Products = () => {
   const getAllProducts = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:8000/api/v1/product/getallproducts");
+      const res = await api.get("/product/getallproducts");
       if (res.data.success) {
         setAllProducts(res.data.products);
         dispatch(setProducts(res.data.products));

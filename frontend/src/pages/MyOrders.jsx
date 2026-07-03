@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api/axios"
 import { toast } from "sonner";
 import { ShoppingBag, Package, Calendar, CreditCard, Hash } from "lucide-react";
 
@@ -12,8 +12,8 @@ const MyOrders = () => {
 
   const getMyOrders = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:8000/api/v1/order/my-orders",
+      const res = await api.get(
+        "/order/my-orders",
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
       if (res.data.success) setOrders(res.data.orders);

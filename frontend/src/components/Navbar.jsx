@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
-import axios from "axios";
+import api from "../api/axios"
 import { toast } from "sonner";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "../redux/userSlice";
@@ -20,8 +20,8 @@ const Navbar = () => {
 
   const logoutHandler = async () => {
     try {
-      const res = await axios.post(
-        "http://localhost:8000/api/v1/user/logout",
+      const res = await api.post(
+        "/user/logout",
         {},
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );

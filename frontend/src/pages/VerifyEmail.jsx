@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../api/axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Mail, CheckCircle, XCircle } from "lucide-react";
@@ -10,8 +10,8 @@ const VerifyEmail = () => {
 
   const verifyEmail = async () => {
     try {
-      const res = await axios.post(
-        "http://localhost:8000/api/v1/user/verify",
+      const res = await api.post(
+        "/user/verify",
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

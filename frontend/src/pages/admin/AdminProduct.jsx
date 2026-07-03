@@ -11,7 +11,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import ImageUpload from "@/components/ImageUpload";
-import axios from "axios";
+import api from "../../api/axios"
 import { toast } from "sonner";
 import { setProducts } from "@/redux/productSlice";
 import {
@@ -63,8 +63,8 @@ const AdminProduct = () => {
     editProduct.productImg.filter((img) => img instanceof File).forEach((file) => formData.append("files", file));
 
     try {
-      const res = await axios.put(
-        `http://localhost:8000/api/v1/product/update/${editProduct._id}`,
+      const res = await api.put(
+        `/product/update/${editProduct._id}`,
         formData,
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
@@ -82,8 +82,8 @@ const AdminProduct = () => {
   const deleteProductHandler = async (productId) => {
     try {
       const remaingProducts = products.filter((product) => product._id !== productId);
-      const res = await axios.delete(
-        `http://localhost:8000/api/v1/product/delete/${productId}`,
+      const res = await api.delete(
+        `/product/delete/${productId}`,
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
       if (res.data.success) {
