@@ -28,7 +28,9 @@ app.use("/api/v1/order", orderRoute);
 
 
 
-
+app.get("/", (req, res) => {
+  res.send("ShopNest Backend is running 🚀");
+});
 
 
 app.listen(PORT,()=>
